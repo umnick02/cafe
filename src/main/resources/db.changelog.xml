@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <include file="changeset/DDL.sql"/>
+    <include file="changeset/DISH.sql"/>
+    <include file="changeset/INGREDIENT.sql"/>
+    <include file="changeset/DISH_ITEM.sql"/>
+    <include file="changeset/MENU.sql"/>
+    <include file="changeset/MENU_DISHES.sql"/>
+    <include file="changeset/DELIVERY_WINDOW.sql"/>
+    <include file="changeset/ORDER.sql"/>
+    <include file="changeset/ORDER_DELIVERY_WINDOWS.sql"/>
+    <include file="changeset/ORDER_ITEM.sql"/>
+</databaseChangeLog>
