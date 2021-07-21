@@ -27,6 +27,9 @@ public class Menu {
     @Column
     private Double price;
 
+    @Column(unique = true)
+    private int priority;
+
     @Column(nullable = false)
     private boolean active = true;
 
@@ -83,5 +86,13 @@ public class Menu {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
     }
 }

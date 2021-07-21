@@ -9,6 +9,7 @@ public class MenuDto {
     private String description;
     private List<DishDto> dishes;
     private Double price;
+    private int priority;
 
     public String getPic() {
         return pic;
@@ -48,5 +49,13 @@ public class MenuDto {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
     }
 }

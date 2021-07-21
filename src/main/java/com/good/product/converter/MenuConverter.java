@@ -2,7 +2,6 @@ package com.good.product.converter;
 
 import com.good.product.dto.MenuDto;
 import com.good.product.entity.Menu;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.stream.Collectors;
@@ -23,6 +22,7 @@ public class MenuConverter {
         menuDto.setDescription(menu.getDescription());
         menuDto.setDishes(menu.getDishes().stream().map(dishConverter::convertToDto).collect(Collectors.toList()));
         menuDto.setPrice(menu.getPrice());
+        menuDto.setPriority(menu.getPriority());
         return menuDto;
     }
 }
