@@ -24,7 +24,8 @@ create table MENU
     ACTIVE BOOLEAN not null,
     DESCRIPTION VARCHAR(255),
     NAME VARCHAR(255),
-    PRICE DOUBLE
+    PRICE DOUBLE,
+    PRIORITY INTEGER not null
 );
 
 --changeset id:3 author:umnick
