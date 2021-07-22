@@ -4,7 +4,6 @@ import com.good.product.dto.ValidationException;
 import com.good.product.entity.*;
 import com.good.product.repository.DeliveryWindowRepository;
 import com.good.product.repository.DishRepository;
-import com.good.product.repository.MenuRepository;
 import com.good.product.repository.OrderRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,14 +22,12 @@ public class OrderService {
     private final OrderRepository orderRepository;
 
     private final DishRepository dishRepository;
-    private final MenuRepository menuRepository;
 
     public OrderService(DeliveryWindowRepository deliveryWindowRepository,
-                        OrderRepository orderRepository, DishRepository dishRepository, MenuRepository menuRepository) {
+                        OrderRepository orderRepository, DishRepository dishRepository) {
         this.deliveryWindowRepository = deliveryWindowRepository;
         this.orderRepository = orderRepository;
         this.dishRepository = dishRepository;
-        this.menuRepository = menuRepository;
     }
 
     public void validate(Order order) {
@@ -72,8 +69,7 @@ public class OrderService {
         if (order.getOrderItems() != null && !order.getOrderItems().isEmpty()) {
             for (OrderItem orderItem : order.getOrderItems()) {
                 Dish dish = dishRepository.findByName(orderItem.getDish().getName());
-                Menu menu = menuRepository.findFirstByDishesContainsAndActiveTrue(dish);
-                if (menu != null) {
+                if (!dish.isActive()) {
                     field = new ValidationException.Field(String.format("Блюдо (%s)", orderItem.getDish().getName()),
                             "Блюдо " + orderItem.getDish().getName() + " недоступно");
                     logger.warn(field.msg);

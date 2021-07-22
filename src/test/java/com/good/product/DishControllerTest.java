@@ -8,11 +8,11 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
-class MenuControllerTest extends AbstractControllerTest {
+class DishControllerTest extends AbstractControllerTest {
 
     @Test
-    void getMenus() throws Exception {
-        mockMvc.perform(get("/menu")
+    void getDishes() throws Exception {
+        mockMvc.perform(get("/dish")
                 .accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(jsonPath("$", hasSize(2)))
                 .andDo(print());

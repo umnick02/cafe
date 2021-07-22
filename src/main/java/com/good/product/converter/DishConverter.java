@@ -14,14 +14,18 @@ import java.util.stream.Collectors;
 public class DishConverter {
 
     private final DishItemConverter dishItemConverter;
+    private final PictureConverter pictureConverter;
 
-    public DishConverter(DishItemConverter dishItemConverter) {
+    public DishConverter(DishItemConverter dishItemConverter, PictureConverter pictureConverter) {
         this.dishItemConverter = dishItemConverter;
+        this.pictureConverter = pictureConverter;
     }
 
     public Dish convertToEntity(DishDto dishDto) {
         Dish dish = new Dish();
-        dish.setPic(dishDto.getPic());
+        dish.setPics(dishDto.getPics().stream()
+                .map(pictureConverter::convertToEntity)
+                .collect(Collectors.toList()));
         dish.setName(dishDto.getName());
         dish.setPrice(dishDto.getPrice());
         dish.setDescription(dishDto.getDescription());
@@ -33,7 +37,9 @@ public class DishConverter {
 
     public DishDto convertToDto(Dish dish) {
         DishDto dishDto = new DishDto();
-        dishDto.setPic(dish.getPic());
+        dishDto.setPics(dish.getPics().stream()
+                .map(pictureConverter::convertToDto)
+                .collect(Collectors.toList()));
         dishDto.setName(dish.getName());
         dishDto.setDescription(dish.getDescription());
         dishDto.setPrice(dish.getPrice());

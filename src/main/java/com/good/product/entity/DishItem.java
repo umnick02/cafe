@@ -5,7 +5,6 @@ import javax.persistence.*;
 @Entity
 public class DishItem {
 
-    @GeneratedValue
     @Id
     private Long id;
 
@@ -17,6 +16,10 @@ public class DishItem {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Ingredient getIngredient() {

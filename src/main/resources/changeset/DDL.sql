@@ -16,19 +16,6 @@ create table INGREDIENT
 );
 
 --changeset id:2 author:umnick
-create table MENU
-(
-    ID BIGINT not null
-        primary key,
-    PIC VARCHAR(255),
-    ACTIVE BOOLEAN not null,
-    DESCRIPTION VARCHAR(255),
-    NAME VARCHAR(255),
-    PRICE DOUBLE,
-    PRIORITY INTEGER not null
-);
-
---changeset id:3 author:umnick
 create table ORD
 (
     ID BIGINT not null
@@ -43,17 +30,30 @@ create table ORD
     TOTAL DOUBLE not null
 );
 
---changeset id:4 author:umnick
+--changeset id:3 author:umnick
 create table DISH
 (
     ID BIGINT not null
         primary key,
     PIC VARCHAR(255) not null,
+    ACTIVE BOOLEAN not null,
     DESCRIPTION VARCHAR(512),
     NAME VARCHAR(255) not null
         constraint UK_R7G2L08WDH3UV3GVURLI4S1BX
             unique,
     PRICE DOUBLE not null
+);
+
+--changeset id:4 author:umnick
+create table PICTURE
+(
+    ID BIGINT not null
+        primary key,
+    PRIORITY INTEGER,
+    URL VARCHAR(255),
+    DISH_ID BIGINT,
+    constraint FKQH0HXQQ76OLXYQNER6HQJHHTE
+        foreign key (DISH_ID) references DISH (ID)
 );
 
 --changeset id:5 author:umnick
@@ -90,17 +90,6 @@ create table ORD_ITEM
 );
 
 --changeset id:7 author:umnick
-create table MENU_DISHES
-(
-    MENU_ID BIGINT not null,
-    DISHES_ID BIGINT not null,
-    constraint FK4EJBG3V770S3WSY0RFODOV5BR
-        foreign key (MENU_ID) references MENU (ID),
-    constraint FK8H2NDDQI2N7N96507TPIBNTFX
-        foreign key (DISHES_ID) references DISH (ID)
-);
-
---changeset id:8 author:umnick
 create table DELIVERY_WINDOW
 (
     ID BIGINT not null
@@ -111,7 +100,7 @@ create table DELIVERY_WINDOW
     ACTIVE BOOLEAN not null
 );
 
---changeset id:9 author:umnick
+--changeset id:8 author:umnick
 create table ORD_DELIVERY_WINDOWS
 (
     ORDER_ID BIGINT not null,
@@ -121,7 +110,3 @@ create table ORD_DELIVERY_WINDOWS
     constraint FKCOYRXX2RTKD1J2W1EGVVF2Q4G
         foreign key (DELIVERY_WINDOWS_ID) references DELIVERY_WINDOW (ID)
 );
-
---changeset id:10 author:umnick
-create unique index MENU_DISHES_MENU_ID_DISHES_ID_UINDEX
-    on MENU_DISHES (MENU_ID, DISHES_ID);

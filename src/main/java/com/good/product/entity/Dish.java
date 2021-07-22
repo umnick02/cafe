@@ -7,12 +7,12 @@ import java.util.List;
 @Entity
 public class Dish {
 
-    @GeneratedValue
     @Id
     private Long id;
 
-    @Column(nullable = false)
-    private String pic;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "dish_id")
+    private List<Picture> pics;
 
     @Column(nullable = false, unique = true)
     private String name;
@@ -24,8 +24,8 @@ public class Dish {
     @JoinColumn(name = "dish_id")
     private List<DishItem> dishItems;
 
-    @ManyToMany
-    private List<Menu> menus;
+    @Column(nullable = false)
+    private boolean active;
 
     @Column(nullable = false)
     private Double price;
@@ -34,12 +34,16 @@ public class Dish {
         return id;
     }
 
-    public String getPic() {
-        return pic;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setPic(String pic) {
-        this.pic = pic;
+    public List<Picture> getPics() {
+        return pics;
+    }
+
+    public void setPics(List<Picture> pics) {
+        this.pics = pics;
     }
 
     public String getName() {
@@ -77,11 +81,11 @@ public class Dish {
         this.description = description;
     }
 
-    public List<Menu> getMenus() {
-        return menus;
+    public boolean isActive() {
+        return active;
     }
 
-    public void setMenus(List<Menu> menus) {
-        this.menus = menus;
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

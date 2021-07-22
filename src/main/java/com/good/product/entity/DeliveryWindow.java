@@ -7,7 +7,6 @@ import java.util.Objects;
 @Entity
 public class DeliveryWindow {
 
-    @GeneratedValue
     @Id
     private Long id;
 
@@ -26,6 +25,10 @@ public class DeliveryWindow {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public DayOfWeek getDayOfWeek() {

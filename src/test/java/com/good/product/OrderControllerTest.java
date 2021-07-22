@@ -3,9 +3,8 @@ package com.good.product;
 import com.good.product.converter.DishConverter;
 import com.good.product.dto.OrderDto;
 import com.good.product.dto.OrderItemDto;
-import com.good.product.entity.Menu;
-import com.good.product.repository.DeliveryWindowRepository;
-import com.good.product.repository.MenuRepository;
+import com.good.product.entity.Dish;
+import com.good.product.repository.DishRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -19,27 +18,25 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class OrderControllerTest extends AbstractControllerTest {
 
     @Autowired
-    private MenuRepository menuRepository;
-    @Autowired
-    private DeliveryWindowRepository deliveryWindowRepository;
+    private DishRepository dishRepository;
     @Autowired
     private DishConverter dishConverter;
 
     @Test
     void createOrder() throws Exception {
-        List<Menu> menus = menuRepository.findAllByActiveIsTrue();
+        List<Dish> dishes = dishRepository.findAllByActiveIsTrue();
 
         OrderDto orderDto = new OrderDto();
         OrderItemDto orderItemDto = new OrderItemDto();
-        orderItemDto.setDishDto(dishConverter.convertToDto(menus.get(0).getDishes().get(1)));
+        orderItemDto.setDishDto(dishConverter.convertToDto(dishes.get(1)));
         orderItemDto.setQuantity(1);
-        orderItemDto.setTotal(menus.get(0).getDishes().get(1).getPrice()*orderItemDto.getQuantity());
+        orderItemDto.setTotal(dishes.get(1).getPrice()*orderItemDto.getQuantity());
         orderDto.getOrderItemDtos().add(orderItemDto);
 
         orderItemDto = new OrderItemDto();
-        orderItemDto.setDishDto(dishConverter.convertToDto(menus.get(1).getDishes().get(0)));
+        orderItemDto.setDishDto(dishConverter.convertToDto(dishes.get(0)));
         orderItemDto.setQuantity(2);
-        orderItemDto.setTotal(menus.get(1).getDishes().get(0).getPrice()*orderItemDto.getQuantity());
+        orderItemDto.setTotal(dishes.get(0).getPrice()*orderItemDto.getQuantity());
         orderDto.getOrderItemDtos().add(orderItemDto);
 
         orderDto.setPhone("+1452368");

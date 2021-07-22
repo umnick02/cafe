@@ -4,7 +4,7 @@ import java.util.List;
 
 public class DishDto {
 
-    private String pic;
+    private List<PictureDto> pics;
     private String name;
     private String description;
     private List<DishItemDto> dishItems;
@@ -14,12 +14,12 @@ public class DishDto {
     private double fats;
     private double kcal;
 
-    public String getPic() {
-        return pic;
+    public List<PictureDto> getPics() {
+        return pics;
     }
 
-    public void setPic(String pic) {
-        this.pic = pic;
+    public void setPics(List<PictureDto> pics) {
+        this.pics = pics;
     }
 
     public String getName() {
