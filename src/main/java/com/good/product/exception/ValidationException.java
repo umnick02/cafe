@@ -1,4 +1,4 @@
-package com.good.product.dto;
+package com.good.product.exception;
 
 import java.util.List;
 

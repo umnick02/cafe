@@ -2,7 +2,7 @@ package com.good.product.controller;
 
 import com.good.product.converter.OrderConverter;
 import com.good.product.dto.OrderDto;
-import com.good.product.dto.ValidationException;
+import com.good.product.exception.ValidationException;
 import com.good.product.entity.Order;
 import com.good.product.service.OrderService;
 import org.springframework.web.bind.annotation.*;

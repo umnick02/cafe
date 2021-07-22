@@ -1,6 +1,6 @@
 package com.good.product.service;
 
-import com.good.product.dto.ValidationException;
+import com.good.product.exception.ValidationException;
 import com.good.product.entity.*;
 import com.good.product.repository.DeliveryWindowRepository;
 import com.good.product.repository.DishRepository;
